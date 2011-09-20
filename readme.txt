@@ -15,6 +15,7 @@ your website. It makes use/provides the following features:
 - Supports clean URLs (mod_rewrite)
 
 == TO DO ==
+
 - Improve picasa album name cleaning, for foreign characters
 - Find a way to show larger Flickr thumbnails
 - Enable deletion of specific cache files
@@ -32,6 +33,15 @@ your website. It makes use/provides the following features:
 * Update your style sheet as described in the plugin documentation
 * For picasa albums use <?php pic_gallery ('Name of album'); ?>
 * For Flickr photosets use <?php flic_gallery ('Name of your photoset'); ?>
+
+== CHANGELOG ==
+
+Version 1.0.1, 20/09/2011
+- Fixed getimagesize problem, which slowed down everything
+
+Version 1.0.0, 17/09/2011
+- First release
+
 
 == LICENSE ==
 

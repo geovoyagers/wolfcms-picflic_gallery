@@ -2,7 +2,7 @@
 
 /**
 * German language for picasa / flickr online gallery.
-* Translation version 1.0.0
+* Translation version 1.0.1
 *
 * @package Plugins
 * @subpackage picflic_gallery

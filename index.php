@@ -17,7 +17,7 @@ if (!defined('IN_CMS')) { exit(); }
  * @subpackage picflic_gallery
  *
  * @author Tina Keil <seven@geovoyagers.de>
- * @version 1.0.0
+ * @version 1.0.1
  * @since Wolf version 0.7.5
  * @license http://www.gnu.org/licenses/gpl.html GPL License
  * @copyright Tina Keil, 2011+
@@ -35,7 +35,7 @@ Plugin::setInfos(array(
 	'id'			=> 'picflic_gallery',
 	'title'			=> __('Picflic Gallery'),
 	'description'	=> __('Lets you integrate picasa albums or flickr photosets'),
-	'version'		=> '1.0.0',
+	'version'		=> '1.0.1',
 	'license'		=> 'GPL',
 	'author'		=> 'Tina Keil',
 	'website'		=> 'http://www.geovoyagers.de/',
@@ -45,6 +45,17 @@ Plugin::setInfos(array(
 
 // Add the plugin's tab and controller
 Plugin::addController('picflic_gallery', __('Picflic Gallery'));
+
+function get_execution_time()
+{
+    static $microtime_start = null;
+    if($microtime_start === null)
+    {
+        $microtime_start = microtime(true);
+        return 0.0; 
+    }    
+    return microtime(true) - $microtime_start; 
+}
 
 /**
  * Get respective Feed from Flickr API.
@@ -66,7 +77,7 @@ function flic_api_call($method,$key,$value) {
 	$api_url .= "&auth_token=".$picflic_flic_token;
 	$api_url .= "&method=".$method;
 	$api_url .= "&$key=".$value;
-
+	
 	$getfeed = cache_call($api_url,'FLIC_');
 	$rsp = simplexml_load_string($getfeed);
 	return $rsp;
@@ -122,7 +133,7 @@ function pic_gallery ($album_name, $perpage='', $show_title=false) {
 	$picflic_pic_large = Plugin::getSetting('picflic_pic_large', 'picflic_gallery'); //size of large images
 	$picflic_pic_thumb = Plugin::getSetting('picflic_pic_thumb', 'picflic_gallery'); //size of thumbails
 	$picflic_strlen_thumb = (int) Plugin::getSetting('picflic_strlen_thumb', 'picflic_gallery'); //Max. length of title below thumbs
-	$picflic_text = $row_height = '';
+	$picflic_text = $thumb_dims = '';
 	
 	//Get general settings
 	if (!empty($perpage)) {
@@ -177,21 +188,13 @@ function pic_gallery ($album_name, $perpage='', $show_title=false) {
 				$thumb_url = str_replace('s72', $picflic_pic_thumb, $picurl);
 
 				//find out thumbnail sizes for height and width attributes in image tag
-				if (substr($picflic_pic_thumb,-1) != 'c') {
-
-					if (function_exists('getimagesize')) {
-						$thumb_size = getimagesize($thumb_url);
-						$thumb_dims = $thumb_size[3]; //height + width
-						$dims = $thumb_size[0] + 60;
-					} else {
-						$dims = substr($picflic_pic_thumb,1) + 60;
-						$thumb_dims = '';
-					}
-					$row_height = ' style="height:'.$dims.'px"';
-				} else {
+				$dims = substr($picflic_pic_thumb,1,-2);
+				if (substr($picflic_pic_thumb,-1) == 'c') {
 					//cropped, so height is same as width and according to setting
-					$dims = substr($picflic_pic_thumb,1,-2);
-					$thumb_dims = 'width="'.$dims .'" height="'.$dims .'"';
+					$thumb_dims = 'width="'.$dims.'" height="'.$dims.'" ';
+				} else {
+					//we only know the width
+					$thumb_dims = 'width="'.$dims.'" height=""';
 				}
 
 				if (trim($title)!='' && $show_title == true) {
@@ -209,7 +212,7 @@ function pic_gallery ($album_name, $perpage='', $show_title=false) {
 					$title = __("Image").' '.($picflic_pic_count + 1);
 				}
 
-				echo '<li'.$row_height.'><a href="'.$large_url.'" class="photo" rel="my-gallery" title="'.$title.'"><img src="'.$thumb_url.'" alt="'.$title.'" '.$thumb_dims.' /></a>'.$picflic_text.'</li>'."\n";
+				echo '<li><a href="'.$large_url.'" class="photo" rel="my-gallery" title="'.$title.'"><img src="'.$thumb_url.'" alt="'.$title.'" '.$thumb_dims.'/></a>'.$picflic_text.'</li>'."\n";
 			}
 			$picflic_pic_count++;
 		}
@@ -237,7 +240,7 @@ function flic_gallery ($album_name, $perpage='', $show_title=false) {
 	$picflic_flic_large = Plugin::getSetting('picflic_flic_large', 'picflic_gallery'); //size of large images
 	$picflic_flic_thumb = Plugin::getSetting('picflic_flic_thumb', 'picflic_gallery'); //size of thumbails
 	$picflic_strlen_thumb = (int) Plugin::getSetting('picflic_strlen_thumb', 'picflic_gallery'); //Max. length of title below thumbs
-	$picflic_text = $row_height = '';
+	$picflic_text = '';
 	
 	//Get general settings
 	if (!empty($perpage)) {
@@ -250,7 +253,7 @@ function flic_gallery ($album_name, $perpage='', $show_title=false) {
 	
 	//get a list of all photosets and find out the photoset_id of the album to show
 	$sxml_getlist = flic_api_call('flickr.photosets.getList','user_id',$picflic_flic_userid);
-	
+		
 	if ($picflic_cache_error == true) {
 		echo '<p><strong>'.__('Could\'nt save the feed to the cache. Make sure the cache folder is writeable!').'</strong></p>';
 	}
@@ -298,17 +301,12 @@ function flic_gallery ($album_name, $perpage='', $show_title=false) {
 					$large_url = str_replace($picflic_flic_thumb, $picflic_flic_large, $picurl);
 					$thumb_url = $picurl;
 
-					if ($picflic_flic_thumb != '_s') {
-						$row_height = '130';
-						if (function_exists('getimagesize')) {
-							$thumb_size = getimagesize($thumb_url);
-							$thumb_dims = $thumb_size[3];
-						} else {
-							$thumb_dims = '';
-						}
-					} else {
+					if ($picflic_flic_thumb == '_s') {
 						//cropped, so height is same as width and according to setting
-						$thumb_dims = 'width="75" height="75"';
+						$thumb_dims = 'width="75" height="75" ';
+					} else {
+						//ok, so longest side is 100, height we dont know, so get it
+						$thumb_dims = 'width="100" height="" ';
 					}
 
 					if (trim($title)!='' && $show_title == true) {
@@ -326,7 +324,7 @@ function flic_gallery ($album_name, $perpage='', $show_title=false) {
 						$title = __("Image").' '.($picflic_flic_count + 1);
 					}
 
-					echo '<li><a href="'.$large_url.'" class="photo" rel="my-gallery" title="'.$title.'"><img src="'.$thumb_url.'" alt="'.$title.'" '.$thumb_dims.' /></a>'.$picflic_text.'</li>'."\n";
+					echo '<li><a href="'.$large_url.'" class="photo" rel="my-gallery" title="'.$title.'"><img src="'.$thumb_url.'" alt="'.$title.'" '.$thumb_dims.'/></a>'.$picflic_text.'</li>'."\n";
 
 				}
 				$picflic_flic_count++;	
