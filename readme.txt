@@ -36,6 +36,9 @@ your website. It makes use/provides the following features:
 
 == CHANGELOG ==
 
+Version 1.0.2, 18/08/2013
+- added en-message.php
+
 Version 1.0.1, 20/09/2011
 - Fixed getimagesize problem, which slowed down everything
 
