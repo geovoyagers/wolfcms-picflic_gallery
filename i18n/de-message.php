@@ -1,24 +1,25 @@
 <?php
 
-/**
-* German language for picasa / flickr online gallery.
-* Translation version 1.0.1
-*
-* @package Plugins
-* @subpackage picflic_gallery
-*
-* @author Tina Keil <seven@geovoyagers.de>
-* @version Wolf 0.7.5
-*/
-
-return array(
-	'Picflic Gallery' => 'Picflic Galerie',
-	'Lets you integrate picasa albums or flickr photosets' => 'Ermöglicht die Integration von Picasa Alben oder Flickr photosets',
+    /**
+     * German language for picasa / flickr online gallery.
+	 * Translation version 1.0.0
+     *
+     * @package Plugins
+     * @subpackage picflic_gallery
+     *
+     * @author Tina Keil <seven@geovoyagers.de>
+     * @version Wolf 0.7.5
+     */
+     
+    return array(
+    'Picflic Gallery' => 'Picflic Galerie',
+    'Lets you integrate picasa albums or flickr photosets' => 'Ermöglicht die Integration von Picasa Alben oder Flickr photosets',
 	'General settings' => 'Allgemeine Einstellungen',
 	'Use Cache' => 'Benutze Cache',
 	'Yes' => 'Ja',
 	'No' => 'Nein',
 	'Image' => 'Bild',
+	'Untitled Image' => 'Unbenanntes Bild',
 	'Delete Cache' => 'Cache löschen',
 	'Cache the external xml files?' => 'Cache die externen XML Dateien?',
 	'Cache Lifetime' => 'Cache Lebensdauer',
@@ -54,8 +55,8 @@ return array(
 	'Your Flickr Api Token' => 'Ihr Flickr Api-Token',
 	'Api User ID' => 'Api Nutzer-ID',
 	'Your Flickr User ID' => 'Ihre Flickr Nutzer-ID',
-	'Could\'nt save the feed to the cache. Make sure the cache folder is writeable!' => 'Konnte den Feed nicht cachen. Bitte stellen Sie sicher, dass der Cache-Ordner Schreibrechte hat.',
-	'There was a problem calling the feed. Check the album name and permissions or try again later.' => 'Es gab ein Problem mit dem Feedabruf. Bitte prüfen Sie den Albumname und die Rechte oder versuchen Sie es später nochmal.',
+    'Could\'nt save the feed to the cache. Make sure the cache folder is writeable!' => 'Konnte den Feed nicht cachen. Bitte stellen Sie sicher, dass der Cache-Ordner Schreibrechte hat.',
+    'There was a problem calling the feed. Check the album name and permissions or try again later.' => 'Es gab ein Problem mit dem Feedabruf. Bitte prüfen Sie den Albumname und die Rechte oder versuchen Sie es später nochmal.',
 	'Flickr Api Token' => 'Flickr Api-Token',
 	'Sorry, you can\'t do this yet.' => 'Achtung: Das können Sie noch nich tun!',
 	'You must first enter the <strong>Flickr Username</strong>' => 'Sie müssen zuerst Ihren <strong>Flickr Nutzernamen</strong> eingeben',
@@ -75,6 +76,15 @@ return array(
 	'Step 2: Get your Flickr Api Token' => 'Schritt 2: Holen Sie Ihren Flickr Api-Token',
 	'After you have saved the callback URL, click on the following link to get your Api Token:' => 'Nachdem Sie die callback URL gespeichert haben, klicken Sie auf den folgenden Link, um Ihren Api-Token zu holen:',
 	'Get your Token now' => 'Api-Token jetzt holen',
-	'The cache has been deleted.' => 'Der Cache wurde gelöscht',
-	'An error occured trying to delete the cache.' => 'Ein Fehler ist beim Löschen des Caches aufgetreten.'
-);
+	'The cache has been deleted.' => 'Der Cache wurde gelöscht.',
+	'An error occured trying to delete the cache.' => 'Ein Fehler ist beim löschen des Caches aufgetreten.',
+	'Picflic Gallery plugin' => 'Picflic Gallery plugin',
+	'This plugin allows you to integrate an online gallery into your site.' => 'Dieses Plugin erlaubt die Integration einer online Galerie in Ihre Webseite',
+	'(link opens new window)' => '(Link öffnet ein neues Fenster)',
+	'Goto the following page:' => 'Gehen Sie zur folgenden Seite:',
+	'Next page' => 'Nächste Seite',
+	'Previous page' => 'Vorherige Seite',
+	'Next' => 'Nächste',
+	'Prev' => 'Vorherige',
+	'Page' => 'Seite'
+    );
