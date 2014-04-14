@@ -76,5 +76,14 @@ return array(
 	'After you have saved the callback URL, click on the following link to get your Api Token:' => 'After you have saved the callback URL, click on the following link to get your Api Token:',
 	'Get your Token now' => 'Get your Token now',
 	'The cache has been deleted.' => 'The cache has been deleted.',
-	'An error occured trying to delete the cache.' => 'An error occured trying to delete the cache.'
+	'An error occured trying to delete the cache.' => 'An error occured trying to delete the cache.',
+	'Picflic Gallery plugin' => 'Picflic Gallery plugin',
+	'This plugin allows you to integrate an online gallery into your site.' => 'Dieses Plugin erlaubt die Integration einer online Galerie in Ihre Webseite',
+	'(link opens new window)' => '(Link öffnet ein neues Fenster)',
+	'Goto the following page:' => 'Gehen Sie zur folgenden Seite:',
+	'Next page' => 'Nächste Seite',
+	'Previous page' => 'Vorherige Seite',
+	'Next' => 'Nächste',
+	'Prev' => 'Vorherige',
+	'Page' => 'Seite'
 );
