@@ -78,12 +78,12 @@ return array(
 	'The cache has been deleted.' => 'The cache has been deleted.',
 	'An error occured trying to delete the cache.' => 'An error occured trying to delete the cache.',
 	'Picflic Gallery plugin' => 'Picflic Gallery plugin',
-	'This plugin allows you to integrate an online gallery into your site.' => 'Dieses Plugin erlaubt die Integration einer online Galerie in Ihre Webseite',
-	'(link opens new window)' => '(Link öffnet ein neues Fenster)',
-	'Goto the following page:' => 'Gehen Sie zur folgenden Seite:',
-	'Next page' => 'Nächste Seite',
-	'Previous page' => 'Vorherige Seite',
-	'Next' => 'Nächste',
-	'Prev' => 'Vorherige',
-	'Page' => 'Seite'
+	'This plugin allows you to integrate an online gallery into your site.' => 'This plugin allows you to integrate an online gallery into your site.',
+	'(link opens new window)' => '(link opens new window)',
+	'Goto the following page:' => 'Goto the following page:',
+	'Next page' => 'Next page',
+	'Previous page' => 'Previous page',
+	'Next' => 'Next',
+	'Prev' => 'Prev',
+	'Page' => 'Page'
 );
