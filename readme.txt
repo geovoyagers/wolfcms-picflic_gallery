@@ -36,6 +36,9 @@ your website. It makes use/provides the following features:
 
 == CHANGELOG ==
 
+Version 1.0.3, 15/07/2014
+- updated Flickr Authentification URI to https
+
 Version 1.0.2, 18/08/2013
 - added en-message.php
 
