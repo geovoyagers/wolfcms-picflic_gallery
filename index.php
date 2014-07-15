@@ -72,7 +72,7 @@ function flic_api_call($method,$key,$value) {
 			"$key".$value
 	);
 
-	$api_url = "http://api.flickr.com/services/rest/?api_sig=".$signature;
+	$api_url = "https://api.flickr.com/services/rest/?api_sig=".$signature;
 	$api_url .= "&api_key=".$picflic_flic_auth;
 	$api_url .= "&auth_token=".$picflic_flic_token;
 	$api_url .= "&method=".$method;
@@ -145,7 +145,7 @@ function pic_gallery ($album_name, $perpage='', $show_title=false) {
 	$picflic_pic_getalbum = (isset($_GET['album']) ? htmlspecialchars(urldecode($_GET['album'])) : '');		
 	$albumname = str_replace(' ', '', $album_name);
 	//picasa does not like umlauts, so get rid of them
-	$umlaute = array("/ä/","/ö/","/ü/","/Ä/","/Ö/","/Ü/","/ß/");
+	$umlaute = array("/ï¿½/","/ï¿½/","/ï¿½/","/ï¿½/","/ï¿½/","/ï¿½/","/ï¿½/");
 	$replace = array("a","o","u","A","O","U","ss");
 	$albumname_clean = preg_replace($umlaute, $replace, utf8_decode($albumname));
 	$external_feed = "http://picasaweb.google.com/data/feed/api/user/".$picflic_pic_user."/album/".$albumname_clean.'?authkey='.$picflic_pic_auth;
